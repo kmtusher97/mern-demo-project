@@ -21,6 +21,8 @@ app.use(
 
 connectMongoDB();
 
+app.get('/_status', (req, res) => res.status(200).json({ message: 'OK' }));
+
 app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api', courseRoutes);
