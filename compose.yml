@@ -4,6 +4,9 @@ services:
     build:
       context: ./server
       dockerfile: Dockerfile
+      args:
+        - NODE_VERSION=18
+        - ENVIRONMENT=development
     depends_on:
       - lms-mongo
     ports:
