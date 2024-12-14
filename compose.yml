@@ -1,0 +1,22 @@
+services:
+  lms-server:
+    container_name: lms-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    depends_on:
+      - lms-mongo
+    ports:
+      - 5000:5000
+    restart: on-failure
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://lms-mongo:27017/lms
+      - SECRET_KEY=my-secret-key
+      - TOKEN_DURATION=1h
+
+  lms-mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+ 
